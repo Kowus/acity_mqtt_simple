@@ -42,7 +42,7 @@ router.get('/stream', function(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Acity IoT Session' });
 });
 
 client.on('error', err => {

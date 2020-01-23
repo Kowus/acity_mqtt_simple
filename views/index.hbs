@@ -1,2 +1,60 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{!-- <h1>{{title}}</h1>
+<p>Welcome to {{title}}</p> --}}
+
+<!-- Image Showcases -->
+<section class="showcase">
+  <div class="container-fluid p-0">
+    <div class="row no-gutters">
+
+      <div class="col-lg-6 order-lg-2 my-auto showcase-text">
+        <h2>Server Sent Events (SSE)</h2>
+        <p class="lead mb-0">Server-Sent Events (SSE) is a server push technology enabling a client to receive automatic
+          updates from a server via
+          HTTP connection. The Server-Sent Events EventSource API is standardized as part of HTML5 by the W3C.
+          <br>
+          <q>
+            Example: the box below changes as the temperature sensor readings arrive in the backend on a remote sensor.
+          </q>
+          <h3 class="text-center" style="padding: 20px;"><span id="temperature"></span>&deg;C</h3>
+        </p>
+      </div>
+      <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+        <h2>MQTT and Server Sent Events</h2>
+        <p class="lead mb-0">MQTT stands for MQ Telemetry Transport. It is a publish/subscribe, extremely simple and
+          lightweight messaging protocol,
+          designed for constrained devices and low-bandwidth, high-latency or unreliable networks. The design principles
+          are to
+          minimise network bandwidth and device resource requirements whilst also attempting to ensure reliability and
+          some degree
+          of assurance of delivery. These principles also turn out to make the protocol ideal of the emerging
+          “machine-to-machine”
+          (M2M) or “Internet of Things” world of connected devices, and for mobile applications where bandwidth and
+          battery power
+          are at a premium.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{!-- <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+    </p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div> --}}
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  window.onload = () => {
+    var evtSource = new EventSource('/stream');
+    evtSource.onmessage = e => {
+      const data = e.data;
+      document.getElementById('temperature').innerText = data;
+    };
+  };
+</script>
